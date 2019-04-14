@@ -1,0 +1,5 @@
+/**
+ * @author Alec
+ *
+ */
+package chess;
