@@ -1,5 +1,5 @@
 /**********************************************************************
- * Filename: FTP_Client
+ * Filename: Client
  *
  * Authors: Alec Betancourt, Parker Petroff, and Randy Nguyen
  **********************************************************************/
@@ -8,7 +8,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class FTP_Client {
+public class Client {
 
     private Socket socket;
     private String hostName;
@@ -20,10 +20,15 @@ public class FTP_Client {
     private boolean exists;
     private int status;
     private DataInputStream din;
+    private String UserName;
 
-    public FTP_Client() {
+    public Client() {
         // Something goes here?
 
+    }
+
+    public void setUserName(String s) {
+        UserName = s;
     }
 
     public int connect(String hostName, int portNumber) {
@@ -38,7 +43,7 @@ public class FTP_Client {
             // Create a BufferedReader from the socket's input stream
             //https://stackoverflow.com/questions/48266026/socket-java-client-python-server
             din = new DataInputStream(socket.getInputStream());
-            //in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out.println("CONNECT " + hostName + " " + portNumber + " " + UserName);
             String s = din.readUTF();
             System.out.println(s);
         } catch (Exception e) {
@@ -63,7 +68,11 @@ public class FTP_Client {
     public int send (String com) {
         try {
             out.println(com);
-            System.out.println("Sent" + com);
+            System.out.println("Sent Command: " + com);
+            String s = din.readUTF();
+            while(din.readUTF()!=null) {
+                System.out.println(s);
+            }
         } catch (Exception e) {
             System.out.println("Send Error");
             return -1;
@@ -84,10 +93,15 @@ public class FTP_Client {
     }
 
     public static void main(String[] args) {
-        FTP_Client client = new FTP_Client();
+        Client client = new Client();
         Scanner scnr = new Scanner(System.in);
 
         int status;
+
+        //System.out.print("Enter your username: ");
+        //String name = scnr.nextLine();
+        // TODO Remove fixed name
+        client.setUserName("RANDY");
 
         while (true) {
 
@@ -106,9 +120,10 @@ public class FTP_Client {
                             System.out.println("Invalid arguments");
                         else {
                             try {
-                                System.out.println("Attempting Connection");
                                 int pNum = Integer.parseInt(commands[2]);
                                 status = client.connect(commands[1], pNum);
+                                if (status == 0)
+                                    System.out.println("Connection Successful");
                             } catch (Exception e) {
                                 System.out.print("Could not convert port to number");
                             }
@@ -127,16 +142,14 @@ public class FTP_Client {
                         System.out.println("--- HELP MENU ---\n");
                         System.out.println("CONNECT <server name/IP address> <server port>");
                         System.out.println("LIST");
-                        System.out.println("RETRIEVE <filename>");
-                        System.out.println("STORE <filename>");
                         System.out.println("QUIT\n");
                         break;
 
                     default:
-                        client.send(cmd);
-                        System.out.println("No Matching Argument");
+                        client.send(command);
                 }
             }
         }
     }
 }
+
