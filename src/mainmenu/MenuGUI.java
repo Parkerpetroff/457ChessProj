@@ -41,6 +41,11 @@ public class MenuGUI extends JFrame implements ActionListener {
 	/** Player names. */
 	private String name1, name2;
 
+	/** Panel for Host */
+	private HostGUI host;
+
+	/** Panel for Join */
+	private JoinGUI join;
 	/**
 	 * Menu constructor.
 	 * @param n1 name for player 1.
@@ -103,22 +108,27 @@ public class MenuGUI extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == hostButton) {
-			dispose();
-			try {
-			    String[] args = {"9000"};
-                Server.main(args);
-            } catch (IOException error) {
-			    System.out.print("Error");
-            }
-			new chess.ChessGUI(name1, name2);
+			this.remove(screen);
+			host = new HostGUI();
+			add(host);
+//			dispose();
+//			try {
+//			    String[] args = {"9000"};
+//                Server.main(args);
+//            } catch (IOException error) {
+//			    System.out.print("Error");
+//            }
+			//new chess.ChessGUI(name1, name2);
 			revalidate();
 			repaint();
 		}
 		
 		if (e.getSource() == joinButton) {
-			dispose();
-			String[] args = {};
-			Client.main(args);
+			this.remove(screen);
+			join = new JoinGUI();
+			add(join);
+//			String[] args = {};
+//			Client.main(args);
 			revalidate();
 			repaint();
 		}
