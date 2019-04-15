@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f7aa29d-168d-4647-82db-503c0e9f052a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/chess/src/Bishop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/ChessDiagram.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/ChessDiagram.ucls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/ChessGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/ChessTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/King.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Knight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Model.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Move.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Pawn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Piece.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Queen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Rook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/Team.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/View.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/bishopIconB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/bishopIconW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/kingIconB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/kingIconW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/knightIconB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/knightIconW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/pawnIconB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/pawnIconW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/queenIconB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/queenIconW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/rookIconB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess/src/rookIconW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/p2p/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/p2p/Server.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,14 +15,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MenuGUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="117" column="42" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
+            <state relative-caret-position="170">
+              <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HostGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainmenu/HostGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="46" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JoinGUI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mainmenu/JoinGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="104" column="22" lean-forward="true" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HelpPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainmenu/HelpPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="78" column="8" lean-forward="true" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/p2p/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -82,24 +98,23 @@
       <list>
         <option value="$PROJECT_DIR$/src/chess/ChessGUI.java" />
         <option value="$PROJECT_DIR$/src/mainmenu/HelpPanel.java" />
-        <option value="$PROJECT_DIR$/src/p2p/Server.java" />
         <option value="$PROJECT_DIR$/src/p2p/Client.java" />
+        <option value="$PROJECT_DIR$/src/p2p/Server.java" />
         <option value="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" />
+        <option value="$PROJECT_DIR$/src/mainmenu/HostGUI.java" />
+        <option value="$PROJECT_DIR$/src/mainmenu/JoinGUI.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-355" />
-    <option name="y" value="-1078" />
-    <option name="width" value="1451" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1814" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -118,12 +133,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="mainmenu" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="457ChessProj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="457ChessProj" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="p2p" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,23 +245,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-355" y="-1078" width="1451" height="1040" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.32972974" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32965517" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.29405406" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.2937931" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="CheckStyle" order="11" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.24947736" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.23307292" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="3" />
@@ -247,11 +270,11 @@
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32972974" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32972974" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -259,10 +282,20 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1989">
+          <caret line="117" column="42" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1989">
@@ -316,13 +349,6 @@
     <entry file="file://$PROJECT_DIR$/src/mainmenu/mmLogo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainmenu/HelpPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="85" column="26" lean-forward="true" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/ChessGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -330,12 +356,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/p2p/Server.java" />
     <entry file="file://$PROJECT_DIR$/src/p2p/Client.java" />
+    <entry file="file://$PROJECT_DIR$/src/p2p/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainmenu/HelpPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="78" column="8" lean-forward="true" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="117" column="42" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
+        <state relative-caret-position="170">
+          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainmenu/HostGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="46" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainmenu/JoinGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="104" column="22" lean-forward="true" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

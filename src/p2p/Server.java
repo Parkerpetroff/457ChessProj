@@ -6,6 +6,8 @@ package p2p;
  * Authors: Alec Betancourt, Parker Petroff, and Randy Nguyen
  **********************************************************************/
 
+import mainmenu.HostGUI;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -23,7 +25,9 @@ public class Server implements Runnable {
     private Path path;
     private Socket controlSocket;
 
+
     public Server(Socket controlSocket) {
+
         this.controlSocket = controlSocket;
         path = Paths.get(System.getProperty("user.dir"));
     }
