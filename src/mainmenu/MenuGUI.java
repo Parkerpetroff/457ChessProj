@@ -111,13 +111,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 			this.remove(screen);
 			host = new HostGUI();
 			add(host);
-//			dispose();
-//			try {
-//			    String[] args = {"9000"};
-//                Server.main(args);
-//            } catch (IOException error) {
-//			    System.out.print("Error");
-//            }
+
 			//new chess.ChessGUI(name1, name2);
 			revalidate();
 			repaint();
@@ -127,8 +121,6 @@ public class MenuGUI extends JFrame implements ActionListener {
 			this.remove(screen);
 			join = new JoinGUI();
 			add(join);
-//			String[] args = {};
-//			Client.main(args);
 			revalidate();
 			repaint();
 		}

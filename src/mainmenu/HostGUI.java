@@ -1,6 +1,9 @@
 package mainmenu;
 
+import p2p.Server;
+
 import java.awt.*;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -61,5 +64,12 @@ public class HostGUI extends JPanel{
         con.gridwidth = 2;
         add(portLabel, con);
         con.fill = GridBagConstraints.HORIZONTAL;
+
+//        try {
+//            String[] args = {"9000"};
+//            Server.main(args);
+//        } catch (IOException error) {
+//            System.out.print("Server Creation Error");
+//        }
     }
 }
