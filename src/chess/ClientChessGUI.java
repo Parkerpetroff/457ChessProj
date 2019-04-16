@@ -1,20 +1,16 @@
 package chess;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Socket;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 /**
  * GUI for chess panel. TO be called by main menu.
  * @author Parker
  *
  */
-public class ChessGUI extends JFrame implements ActionListener {
+public class ClientChessGUI extends JFrame implements ActionListener {
 	/**
 	 * Chess gui id.
 	 */
@@ -32,7 +28,7 @@ public class ChessGUI extends JFrame implements ActionListener {
 	 * @param name1 player 1's name.
 	 * @param name2 player 2's name.
 	 */
-	public ChessGUI(final String name1, final String name2, final boolean isHost, final Socket commsSock ) {
+	public ClientChessGUI(final String name1, final String name2, final boolean isHost, final Socket echoSocket) {
 		JMenuBar menus;
         JMenu fileMenu;
         JMenuItem quitGame;
@@ -58,8 +54,8 @@ public class ChessGUI extends JFrame implements ActionListener {
 		n1 = name1;
 		n2 = name2;
         setTitle("Chess");
-        add(new View(quitGame, newGame, name1, name2, commsSock));
 
+        add(new ClientView(quitGame, newGame, name1, name2));
 
 	    pack();
 		setSize(800, 800);

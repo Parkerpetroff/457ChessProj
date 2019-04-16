@@ -1,28 +1,16 @@
 package chess;
 
-import java.awt.Color;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  * JPanel for the chess game.
  * @author Parker
  *
  */
-public class View extends JPanel {
+public class ClientView extends JPanel {
 	/**
 	 * View ID.
 	 */
@@ -50,7 +38,7 @@ public class View extends JPanel {
 	/**
 	 * All of the chess piece icons.
 	 */
-	private ImageIcon pawnIconW, pawnIconB, rookIconW, 
+	private ImageIcon pawnIconW, pawnIconB, rookIconW,
 	rookIconB, knightIconW, knightIconB, bishopIconW, bishopIconB,
 	queenIconW, queenIconB, kingIconW, kingIconB;
 	/**
@@ -66,9 +54,6 @@ public class View extends JPanel {
 	 */
 	private String name1, name2;
 	private boolean isTurn;
-	private Socket comms;
-	private ObjectOutputStream outStream;
-	private ObjectInputStream inStream;
 	//will likely be deleted in favor of master UI in release 2
 	//add new game/quit function in menu options
 	/**
@@ -101,16 +86,16 @@ public class View extends JPanel {
 //		frame.setSize(800, 800);
 //		frame.setVisible(true);
 //	}
-	
+
 	/**
 	 * Creates the board and all pieces/icons.
-	 * 
+	 *
 	 * @param pquitGame quit game menu item.
 	 * @param pnewGame new game menu item
 	 * @param pName1 player 1's name.
 	 * @param pName2 player 2's name.
 	 */
-	public View(final JMenuItem pquitGame, final JMenuItem pnewGame, final String pName1, final String pName2, final Socket commsSock) {
+	public ClientView(final JMenuItem pquitGame, final JMenuItem pnewGame, final String pName1, final String pName2) {
 		name1 = pName1;
 		name2 = pName2;
 		model = new Model(name1, name2);
@@ -131,7 +116,7 @@ public class View extends JPanel {
 		kingIconW = new ImageIcon("src/chess/kingIconW.png");
 		kingIconB = new ImageIcon("src/chess/kingIconB.png");
 		//host will go first
-		isTurn = true;
+		isTurn = false;
 		setLayout(new GridLayout(8, 8));
 		ButtonListener listener = new ButtonListener();
 		for (int row = 0; row < 8; row++) {
@@ -150,13 +135,7 @@ public class View extends JPanel {
 		//add listeners to menu items
 		quitGame.addActionListener(listener);
         newGame.addActionListener(listener);
-		comms = commsSock;
-		try {
-			outStream = new ObjectOutputStream(comms.getOutputStream());
-			inStream = new ObjectInputStream(comms.getInputStream());
-		}catch(Exception ex){
-			System.out.println(ex.getMessage());
-		}
+		
 		updateBoard();
 	}
 	
