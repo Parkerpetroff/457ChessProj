@@ -26,10 +26,9 @@ public class Model {
 	
 	/**
 	 * Model constructor. Creates the pieces and board.
-	 * @param name1 player 1's name.
-	 * @param name2 player 2's name.
+	 * @param name player's color
 	 */
-	public Model(final String name1) {
+	public Model(final String name) {
 		board = new Piece[8][8];
 		
 		player1 = new Player("WHITE", Team.WHITE);
@@ -57,7 +56,7 @@ public class Model {
 			board[6][i] = new Pawn(Team.WHITE);
 		}
 	}
-	
+
 	/**
 	 * Gets the current player, who's turn it is.
 	 * @return the current player
@@ -65,7 +64,7 @@ public class Model {
 	public Player currentPlayer() {
 		return currentPlayer;
 	}
-	
+
 	/**
 	 * Determines and switches to the next player.
 	 */

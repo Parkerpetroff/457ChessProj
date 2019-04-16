@@ -57,7 +57,12 @@ public class ChessGUI extends JFrame implements ActionListener {
         menus = new JMenuBar();
         setJMenuBar(menus);
         menus.add(fileMenu);
-        setTitle("Chess");
+
+        if (server != null)
+        	setTitle("Chess Host (White)");
+        else
+        	setTitle("Chess Client (Black)");
+
 		add(new View(quitGame, newGame, server, client));
 	    pack();
 		setSize(800, 800);

@@ -126,8 +126,10 @@ public class View extends JPanel {
         loadIcons();
         setLayout(new GridLayout(8, 8));
         setButtonListeners();
-        if (this.client != null)
+        if (this.client != null) {
             model.move(this.client.receive());
+            model.nextTurn();
+        }
         updateBoard();
     }
 
@@ -201,6 +203,7 @@ public class View extends JPanel {
                             }
                             else if (model.isValidMove(move)) {
                                 model.move(move);
+                                model.nextTurn();
                                 updateBoard();
                                 System.out.println("Valid " + move);
                                 if (server != null)
@@ -211,10 +214,14 @@ public class View extends JPanel {
                                 if (model.isWinner()) {
                                     break;
                                 } else {
-                                    if (server != null)
+                                    if (server != null) {
                                         model.move(server.receive());
-                                    else
+                                        model.nextTurn();
+                                    } else {
                                         model.move(client.receive());
+                                        model.nextTurn();
+                                    }
+                                    updateBoard();
                                 }
 
                             } else {
