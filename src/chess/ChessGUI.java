@@ -1,5 +1,8 @@
 package chess;
 
+import p2p.Client;
+import p2p.Server;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,10 +31,10 @@ public class ChessGUI extends JFrame implements ActionListener {
 	private String n1, n2;
 	/**
 	 * Construtor for chess frame.
-	 * @param name1 player 1's name.
-	 * @param name2 player 2's name.
+	 * @param server server socket
+	 * @param client client socket
 	 */
-	public ChessGUI(final String name1, final String name2) {
+	public ChessGUI(Server server, Client client) {
 		JMenuBar menus;
         JMenu fileMenu;
         JMenuItem quitGame;
@@ -54,10 +57,8 @@ public class ChessGUI extends JFrame implements ActionListener {
         menus = new JMenuBar();
         setJMenuBar(menus);
         menus.add(fileMenu);
-		n1 = name1;
-		n2 = name2;
         setTitle("Chess");
-		add(new View(quitGame, newGame, name1, name2));
+		add(new View(quitGame, newGame, server, client));
 	    pack();
 		setSize(800, 800);
 		setVisible(true);

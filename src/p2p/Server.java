@@ -30,11 +30,12 @@ public class Server implements Runnable{
         
         clientSocket = serverSocket.accept();
         System.err.println("Accepted connection from client");
-       new chess.ChessGUI("Player 1", "Player 2");
+
 
         // open up IO streams
     	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
     	inStream = new ObjectInputStream(clientSocket.getInputStream());
+    	new chess.ChessGUI(this, null);
     	
         // repeatedly wait for connections, and process
         /*
@@ -76,12 +77,21 @@ public class Server implements Runnable{
         }
     }
     
-    public void send(Move move) throws Exception {
-    	outStream.writeObject(move);
+    public void send(Move move) {
+       try {
+           outStream.writeObject(move);
+       } catch (Exception e) {
+           System.out.print("Send Move Error");
+       }
     }
     
-    public Move receive() throws Exception {
-    	return (Move) inStream.readObject();
+    public Move receive() {
+       try {
+           return (Move) inStream.readObject();
+       } catch (Exception e) {
+           System.out.print("Receive Move Error");
+       }
+       return null;
     }
     
     public void close() throws Exception {

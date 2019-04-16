@@ -25,7 +25,10 @@ public class Client {
     	echoSocket = new Socket(hostName, portNumber);
     	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
     	inStream = new ObjectInputStream(echoSocket.getInputStream());
-        new chess.ChessGUI("Player 1", "Player 2");
+
+
+//        System.out.println( client.receive().toString());
+        new chess.ChessGUI(null, this);
     	/*
     	try (
             Socket echoSocket = new Socket(hostName, portNumber);
@@ -49,12 +52,21 @@ public class Client {
         */
     }
     
-    public void send(Move move) throws Exception {
-    	outStream.writeObject(move);
+    public void send(Move move) {
+        try {
+            outStream.writeObject(move);
+        } catch (Exception e) {
+            System.out.print("Send Move Error");
+        }
     }
     
-    public Move receive() throws Exception {
-    	return (Move) inStream.readObject();
+    public Move receive() {
+        try {
+            return (Move) inStream.readObject();
+        } catch (Exception e) {
+            System.out.print("Receive Move Error");
+        }
+        return null;
     }
     
     public void close() throws Exception {

@@ -1,5 +1,6 @@
 package mainmenu;
 
+import chess.Move;
 import p2p.Server;
 
 import java.awt.*;
@@ -33,7 +34,6 @@ public class HostGUI extends JPanel{
     private String MyIP;
 
 
-
     /**
      * Creates the help panel with buttons.
      */
@@ -46,7 +46,6 @@ public class HostGUI extends JPanel{
             System.out.println("System IP Address : " +
                     (localhost.getHostAddress()).trim());
             MyIP = localhost.getHostAddress().trim();
-
         }catch(Exception e) {
             System.out.println("error");
         }
