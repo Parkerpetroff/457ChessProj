@@ -10,18 +10,23 @@ package p2p;
 import java.io.*;
 import java.net.*;
 
+import chess.Move;
+
 public class Client {
-    public static void main(String[] args) throws IOException {
-        
-        if (args.length != 2) {
-            System.err.println("Usage: java EchoClient <host name> <port number>");
-            System.exit(1);
-        }
-
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
-
-        try (
+	int port;
+	Socket echoSocket;
+	PrintWriter out;
+	BufferedReader in;
+	ObjectOutputStream outStream;
+	ObjectInputStream inStream;
+	String inputLine;
+	
+    public Client(String hostName, int portNumber) throws Exception {
+    	echoSocket = new Socket(hostName, portNumber);
+    	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
+    	inStream = new ObjectInputStream(echoSocket.getInputStream());
+    	/*
+    	try (
             Socket echoSocket = new Socket(hostName, portNumber);
             PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
@@ -39,6 +44,23 @@ public class Client {
             System.err.println("Couldn't get I/O for the connection to " +
                 hostName);
             System.exit(1);
-        } 
+        }
+        */
+    }
+    
+    public void send(Move move) throws Exception {
+    	outStream.writeObject(move);
+    }
+    
+    public Move receive() throws Exception {
+    	return (Move) inStream.readObject();
+    }
+    
+    public void close() throws Exception {
+    	// close IO streams, then socket
+        System.err.println("Closing connection with client");
+        out.close();
+        in.close();
+        echoSocket.close();
     }
 }
