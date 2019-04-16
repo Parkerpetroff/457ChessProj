@@ -276,7 +276,7 @@ public class View extends JPanel {
 								System.out.println("Valid " + move);
 								if (model.isWinner()) {
 									// break;
-								} // TODO else {sock.receive(move);}
+								} // TODO else {model.move(sock.receive(move));}
 
 							} else {
 								JOptionPane.showMessageDialog(null,
