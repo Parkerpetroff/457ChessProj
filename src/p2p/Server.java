@@ -15,12 +15,11 @@ public class Server implements Runnable{
 	int port;
 	ServerSocket serverSocket;
 	Socket clientSocket;
-	PrintWriter out;
-	BufferedReader in;
-	ObjectOutputStream outStream;
-	ObjectInputStream inStream;
+    PrintWriter outStream;
+    BufferedReader inStream;
 	String inputLine;
 	Thread server;
+
    public void createServer() throws Exception {
 
     	// create socket
@@ -31,34 +30,11 @@ public class Server implements Runnable{
         clientSocket = serverSocket.accept();
         System.err.println("Accepted connection from client");
 
-
         // open up IO streams
-    	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
-    	inStream = new ObjectInputStream(clientSocket.getInputStream());
+    	outStream = new PrintWriter(clientSocket.getOutputStream(), true);
+    	inStream = new BufferedReader(
+                   new InputStreamReader(clientSocket.getInputStream()));
     	new chess.ChessGUI(this, null);
-    	
-        // repeatedly wait for connections, and process
-        /*
-        while (true) {
-            // a "blocking" call which waits until a connection is requested
-            clientSocket = serverSocket.accept();
-            System.err.println("Accepted connection from client");
-
-            // open up IO streams
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-        	in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        	
-        	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
-        	inStream = new ObjectInputStream(clientSocket.getInputStream());
-        	
-            // waits for data and reads it in until connection dies
-            // readLine() blocks until the server receives a new line from client
-            while ((inputLine = in.readLine()) != null) {
-            	System.out.println("Received message: " + inputLine + " from " + clientSocket.toString());
-        	    out.println(inputLine);
-            }
-        }
-        */
     }
     @Override
     public void run(){
@@ -79,7 +55,7 @@ public class Server implements Runnable{
     
     public void send(Move move) {
        try {
-           outStream.writeObject(move);
+           outStream.println(move.toString());
        } catch (Exception e) {
            System.out.print("Send Move Error");
        }
@@ -87,7 +63,13 @@ public class Server implements Runnable{
     
     public Move receive() {
        try {
-           return (Move) inStream.readObject();
+           //return inStream.readLine();
+           Move move = new Move();
+           String[] strArr = inStream.readLine().split(":", 4);
+           move.fromRow = Integer.parseInt(strArr[0]);
+           move.fromColumn = Integer.parseInt(strArr[1]);
+           move.toRow = Integer.parseInt(strArr[2]);
+           move.toColumn = Integer.parseInt(strArr[3]);
        } catch (Exception e) {
            System.out.print("Receive Move Error");
        }
@@ -97,8 +79,6 @@ public class Server implements Runnable{
     public void close() throws Exception {
     	// close IO streams, then socket
         System.err.println("Closing connection with client");
-        out.close();
-        in.close();
         clientSocket.close();
         serverSocket.close();
     }

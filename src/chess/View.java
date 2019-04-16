@@ -127,7 +127,7 @@ public class View extends JPanel {
         setLayout(new GridLayout(8, 8));
         setButtonListeners();
         if (this.client != null)
-            this.client.receive();
+            model.move(this.client.receive());
         updateBoard();
     }
 
@@ -201,6 +201,7 @@ public class View extends JPanel {
                             }
                             else if (model.isValidMove(move)) {
                                 model.move(move);
+                                updateBoard();
                                 System.out.println("Valid " + move);
                                 if (server != null)
                                     server.send(move);

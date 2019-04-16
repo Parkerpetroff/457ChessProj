@@ -13,67 +13,48 @@ import java.net.*;
 import chess.Move;
 
 public class Client {
-	int port;
-	Socket echoSocket;
-	PrintWriter out;
-	BufferedReader in;
-	ObjectOutputStream outStream;
-	ObjectInputStream inStream;
-	String inputLine;
-	
+    int port;
+    Socket echoSocket;
+    PrintWriter outStream;
+    BufferedReader inStream;
+    String inputLine;
+
+    InputStreamReader isr;
+
     public Client(String hostName, int portNumber) throws Exception {
-    	echoSocket = new Socket(hostName, portNumber);
-    	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
-    	inStream = new ObjectInputStream(echoSocket.getInputStream());
-
-
-//        System.out.println( client.receive().toString());
+        echoSocket = new Socket(hostName, portNumber);
+        outStream = new PrintWriter(echoSocket.getOutputStream(), true);
+        inStream = new BufferedReader(
+                new InputStreamReader(echoSocket.getInputStream()));
         new chess.ChessGUI(null, this);
-    	/*
-    	try (
-            Socket echoSocket = new Socket(hostName, portNumber);
-            PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
-        ) {
-            String userInput;
-            while ((userInput = stdIn.readLine()) != null) {
-                out.println(userInput);
-                System.out.println("echo: " + in.readLine());
-            }
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + hostName);
-            System.exit(1);
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " +
-                hostName);
-            System.exit(1);
-        }
-        */
     }
-    
+
     public void send(Move move) {
         try {
-            outStream.writeObject(move);
+            outStream.println(move.toString());
         } catch (Exception e) {
             System.out.print("Send Move Error");
         }
     }
-    
+
     public Move receive() {
         try {
-            return (Move) inStream.readObject();
+            Move move = new Move();
+            String[] strArr = inStream.readLine().split(":", 4);
+            move.fromRow = Integer.parseInt(strArr[0]);
+            move.fromColumn = Integer.parseInt(strArr[1]);
+            move.toRow = Integer.parseInt(strArr[2]);
+            move.toColumn = Integer.parseInt(strArr[3]);
+            return move;
         } catch (Exception e) {
             System.out.print("Receive Move Error");
         }
         return null;
     }
-    
+
     public void close() throws Exception {
-    	// close IO streams, then socket
+        // close IO streams, then socket
         System.err.println("Closing connection with client");
-        out.close();
-        in.close();
         echoSocket.close();
     }
 }

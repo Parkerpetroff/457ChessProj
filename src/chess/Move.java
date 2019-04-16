@@ -26,8 +26,6 @@ public class Move {
 	 * @return move location message
 	 */
 	public String toString() {
-		return "Move [fromRow=" + fromRow + ", fromColumn=" + fromColumn + ", "
-				+ "toRow=" + toRow + ", toColumn=" + toColumn
-				+ "]";
+		return  fromRow + ":" + fromColumn + ":" + toRow + ":" + toColumn;
 	}
 }
