@@ -5,6 +5,7 @@ import p2p.Client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Socket;
 
 import javax.swing.*;
 
@@ -118,7 +119,8 @@ public class JoinGUI extends JPanel implements ActionListener {
                 IP = ipField.getText();
                 PortNum = Integer.parseInt(portField.getText());
                 String[] args = {"CONNECT",IP,portField.getText()};
-                Client.main(args);
+                //Client.main(args);
+                new Client(IP,PortNum);
                 System.out.println("CONNECT" + " " + IP + " " + PortNum);
             } catch (Exception error) {
                 System.out.println("Error with input");
