@@ -30,6 +30,7 @@ public class Server implements Runnable{
         
         clientSocket = serverSocket.accept();
         System.err.println("Accepted connection from client");
+       new chess.ChessGUI("Player 1", "Player 2");
 
         // open up IO streams
     	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
