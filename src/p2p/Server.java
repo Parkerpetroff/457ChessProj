@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.*;
 import chess.Move;
 
-public class Server {
+public class Server implements Runnable{
 	int port;
 	ServerSocket serverSocket;
 	Socket clientSocket;
@@ -20,8 +20,9 @@ public class Server {
 	ObjectOutputStream outStream;
 	ObjectInputStream inStream;
 	String inputLine;
-	
-    public Server() throws Exception {
+	Thread server;
+   public void createServer() throws Exception {
+
     	// create socket
         port = 2222;
         serverSocket = new ServerSocket(port);
@@ -29,6 +30,7 @@ public class Server {
         
         clientSocket = serverSocket.accept();
         System.err.println("Accepted connection from client");
+       new chess.ChessGUI("Player 1", "Player 2");
 
         // open up IO streams
     	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -56,6 +58,22 @@ public class Server {
             }
         }
         */
+    }
+    @Override
+    public void run(){
+       try {
+           createServer();
+       }
+       catch (Exception ex){
+           System.out.println(ex.getMessage());
+       }
+    }
+    public void start() {
+        System.out.println("Thread started");
+        if (server == null) {
+            server = new Thread(this);
+            server.start();
+        }
     }
     
     public void send(Move move) throws Exception {

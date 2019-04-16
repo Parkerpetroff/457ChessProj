@@ -25,6 +25,7 @@ public class Client {
     	echoSocket = new Socket(hostName, portNumber);
     	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
     	inStream = new ObjectInputStream(echoSocket.getInputStream());
+        new chess.ChessGUI("Player 1", "Player 2");
     	/*
     	try (
             Socket echoSocket = new Socket(hostName, portNumber);

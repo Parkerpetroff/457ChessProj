@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  * Main menu class.
  * @author Parker and Randy
  */
-public class MenuGUI extends JFrame implements ActionListener {
+public class MenuGUI extends JFrame implements ActionListener, Runnable {
 
 	/** Menu ID. */
 	private static final long serialVersionUID = 8921269292088829426L;
@@ -111,10 +111,16 @@ public class MenuGUI extends JFrame implements ActionListener {
 			this.remove(screen);
 			host = new HostGUI();
 			add(host);
-
-			//new chess.ChessGUI(name1, name2);
 			revalidate();
 			repaint();
+		try{
+			Server s = new Server();
+			s.start();
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
+			//new chess.ChessGUI(name1, name2);
+
 		}
 		
 		if (e.getSource() == joinButton) {
@@ -124,6 +130,10 @@ public class MenuGUI extends JFrame implements ActionListener {
 			revalidate();
 			repaint();
 		}
+	}
+	@Override
+	public void run(){
+
 	}
 	/**
 	 * drive for GUI().
