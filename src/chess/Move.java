@@ -2,7 +2,7 @@ package chess;
 
 /**
  * Class for keeping track of where the chess piece moves.
- * @author Alec
+ * @author Alec and Randy
  *
  */
 public class Move {
@@ -26,8 +26,6 @@ public class Move {
 	 * @return move location message
 	 */
 	public String toString() {
-		return "Move [fromRow=" + fromRow + ", fromColumn=" + fromColumn + ", "
-				+ "toRow=" + toRow + ", toColumn=" + toColumn
-				+ "]";
+		return fromRow+":"+fromColumn+":"+toRow+":"+toColumn;
 	}
 }

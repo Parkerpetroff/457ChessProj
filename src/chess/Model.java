@@ -3,7 +3,7 @@ package chess;
 /**
  * The model for the chess game. All moves are executed through 
  * this class.
- * @author Alec
+ * @author Alec and Randy
  *
  */
 public class Model {
@@ -26,14 +26,12 @@ public class Model {
 	
 	/**
 	 * Model constructor. Creates the pieces and board.
-	 * @param name1 player 1's name.
-	 * @param name2 player 2's name.
 	 */
-	public Model(final String name1, final String name2) {
+	public Model(final String playerColor) {
 		board = new Piece[8][8];
 		
-		player1 = new Player(name1, Team.WHITE);
-		player2 = new Player(name2, Team.BLACK);
+		player1 = new Player("Host", Team.WHITE);
+		player2 = new Player("Client", Team.BLACK);
 		currentPlayer = player1;
 		
 		board[0][0] = new Rook(Team.BLACK);
@@ -57,6 +55,9 @@ public class Model {
 			board[6][i] = new Pawn(Team.WHITE);
 		}
 	}
+
+
+
 	
 	/**
 	 * Gets the current player, who's turn it is.

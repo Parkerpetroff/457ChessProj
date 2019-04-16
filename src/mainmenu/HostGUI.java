@@ -26,14 +26,18 @@ public class HostGUI extends JPanel{
     /** Constraints for GridBag formating. */
     private GridBagConstraints con;
 
+    Server s;
+
     /**
      * Creates the help panel with buttons.
      */
-    public HostGUI() {
+    public HostGUI(Server s) {
         setLayout(new GridBagLayout());
         setLayout(new GridBagLayout());
         con = new GridBagConstraints();
+        this.s = s;
         addLabels();
+
     }
 
     /**
@@ -41,35 +45,29 @@ public class HostGUI extends JPanel{
      */
     public void addLabels() {
 
-        messageLabel = new JLabel("Give this to your friend!");
-        ipLabel = new JLabel("IP Addy Here!");
-        portLabel = new JLabel("Port Num Here!");
+            messageLabel = new JLabel("Give this to your friend!");
+            ipLabel = new JLabel("IP: " );//+ s.getIP());
+            portLabel = new JLabel("Port:" );//+ s.getPort());
 
-        messageLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        ipLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        portLabel.setFont(new Font("Arial", Font.BOLD, 30));
+            messageLabel.setFont(new Font("Arial", Font.BOLD, 30));
+            ipLabel.setFont(new Font("Arial", Font.BOLD, 30));
+            portLabel.setFont(new Font("Arial", Font.BOLD, 30));
 
-        con.gridx = 0;
-        con.gridy = 0;
-        con.gridwidth = 2;
-        add(messageLabel, con);
-        con.fill = GridBagConstraints.HORIZONTAL;
-        con.gridx = 0;
-        con.gridy = 1;
-        con.gridwidth = 2;
-        add(ipLabel, con);
-        con.fill = GridBagConstraints.HORIZONTAL;
-        con.gridx = 0;
-        con.gridy = 2;
-        con.gridwidth = 2;
-        add(portLabel, con);
-        con.fill = GridBagConstraints.HORIZONTAL;
+            con.gridx = 0;
+            con.gridy = 0;
+            con.gridwidth = 2;
+            add(messageLabel, con);
+            con.fill = GridBagConstraints.HORIZONTAL;
+            con.gridx = 0;
+            con.gridy = 1;
+            con.gridwidth = 2;
+            add(ipLabel, con);
+            con.fill = GridBagConstraints.HORIZONTAL;
+            con.gridx = 0;
+            con.gridy = 2;
+            con.gridwidth = 2;
+            add(portLabel, con);
+            con.fill = GridBagConstraints.HORIZONTAL;
 
-//        try {
-//            String[] args = {"9000"};
-//            Server.main(args);
-//        } catch (IOException error) {
-//            System.out.print("Server Creation Error");
-//        }
     }
 }

@@ -1,5 +1,8 @@
 package chess;
 
+import p2p.Client;
+import p2p.Server;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -62,6 +65,10 @@ public class View extends JPanel {
 	 * Player names.
 	 */
 	private String name1, name2;
+
+	Server server;
+	Client client;
+
 	//will likely be deleted in favor of master UI in release 2
 	//add new game/quit function in menu options
 	/**
@@ -88,7 +95,8 @@ public class View extends JPanel {
         frame.setJMenuBar(menus);
         menus.add(fileMenu);
 		
-		frame.add(new View(quitGame, newGame, "Player 1", "Player 2"));
+//		frame.add(new View(quitGame, newGame, "Player 1", "Player 2"));
+		frame.add(new View(args[0]));
 	    frame.pack();
 		frame.setSize(800, 800);
 		frame.setVisible(true);
@@ -102,7 +110,29 @@ public class View extends JPanel {
 	 * @param pName1 player 1's name.
 	 * @param pName2 player 2's name.
 	 */
-	public View(final JMenuItem pquitGame, final JMenuItem pnewGame, final String pName1, final String pName2) {
+	/*public View(final JMenuItem pquitGame, final JMenuItem pnewGame, final String pName1, final String pName2) {
+		TODO
+		public View(final JMenuItem pquitGame, final JMenuItem pnewGame, Socket sock) {
+		if (sock == server) model = new Model("WHITE");
+		else if (sock == client) model = new Model("BLACK");
+
+
+		board = new JButton[8][8];
+		move = new Move();
+		newGame = pnewGame;
+        quitGame = pquitGame;
+		loadIcons();
+		setLayout(new GridLayout(8, 8));
+		createBoard();
+		updateBoard();
+
+		if (sock == client) {
+			eMove = sock.receive(move);
+			model.move(eMove);
+		or
+			model.move(sock.receive(move));
+		}
+
 		name1 = pName1;
 		name2 = pName2;
 		model = new Model(name1, name2);
@@ -110,6 +140,68 @@ public class View extends JPanel {
 		move = new Move();
 		newGame = pnewGame;
         quitGame = pquitGame;
+		loadIcons();
+
+		setLayout(new GridLayout(8, 8));
+		createBoard();
+		updateBoard();
+	}*/
+
+	public View(String sock) {
+		if (sock.equals("Server")) model = new Model("WHITE");
+		else if (sock.equals("Client")) model = new Model("BLACK");
+
+
+		board = new JButton[8][8];
+		move = new Move();
+		loadIcons();
+		setLayout(new GridLayout(8, 8));
+		createBoard();
+		updateBoard();
+
+//		if (sock == client) {
+//			eMove = sock.receive(move);
+//			model.move(eMove);
+//			// or
+//			model.move(sock.receive(move));
+//		}
+	}
+
+	public View(Server sock) {
+		server = sock;
+		model = new Model("WHITE");
+
+		board = new JButton[8][8];
+		move = new Move();
+		loadIcons();
+		setLayout(new GridLayout(8, 8));
+		createBoard();
+		updateBoard();
+	}
+
+	public View(Client sock) {
+		client = sock;
+		model = new Model("BLACK");
+
+		board = new JButton[8][8];
+		move = new Move();
+		loadIcons();
+		setLayout(new GridLayout(8, 8));
+		createBoard();
+		updateBoard();
+		try {
+			model.move(client.receive());
+		} catch (Exception e) {
+			System.out.print("Could Not Receive Move");
+		}
+	}
+
+
+
+	/**
+	 * Loads images to chess pieces
+	 */
+	private void loadIcons() {
 		pawnIconW = new ImageIcon("src/chess/pawnIconW.png");
 		pawnIconB = new ImageIcon("src/chess/pawnIconB.png");
 		rookIconW = new ImageIcon("src/chess/rookIconW.png");
@@ -122,8 +214,12 @@ public class View extends JPanel {
 		queenIconB = new ImageIcon("src/chess/queenIconB.png");
 		kingIconW = new ImageIcon("src/chess/kingIconW.png");
 		kingIconB = new ImageIcon("src/chess/kingIconB.png");
-		
-		setLayout(new GridLayout(8, 8));
+	}
+
+	/**
+	 * Creates all tiles on board and adds button listener
+	 */
+	private void createBoard() {
 		ButtonListener listener = new ButtonListener();
 		for (int row = 0; row < 8; row++) {
 			for (int col = 0; col < 8; col++) {
@@ -137,14 +233,12 @@ public class View extends JPanel {
 				add(board[row][col]);
 			}
 		}
-		
+
 		//add listeners to menu items
 		quitGame.addActionListener(listener);
-        newGame.addActionListener(listener);
-		
-		updateBoard();
+		newGame.addActionListener(listener);
 	}
-	
+
 	/**
 	 * Listener for board buttons.
 	 * @author Alec
@@ -177,15 +271,13 @@ public class View extends JPanel {
 								move = new Move();
 							} else if (model.isValidMove(move)) {
 								model.move(move);
+								// TODO sock.send(move);
 								move = new Move();
 								System.out.println("Valid " + move);
 								if (model.isWinner()) {
-									model.wipeBoard();
-									JOptionPane.showMessageDialog(null,
-											model.currentPlayer().name() 
-											+ " has won!");
-								}
-								model.nextTurn();
+									// break;
+								} // TODO else {sock.receive(move);}
+
 							} else {
 								JOptionPane.showMessageDialog(null,
 										"This is not a valid move");
@@ -197,9 +289,17 @@ public class View extends JPanel {
 					}
 				}
 			}
+
+			if (model.isWinner()) {
+				model.wipeBoard();
+				JOptionPane.showMessageDialog(null,
+						model.currentPlayer().name()
+								+ " has won!");
+			}
+
 			//reset model if new game option is selected
             if (source == newGame) {    
-            	model = new Model(name1, name2);
+            	model = new Model("White");
             }
             
             //quit game if menu option was selected

@@ -10,6 +10,11 @@ package p2p;
 import java.io.*;
 import java.net.*;
 import chess.Move;
+import chess.View;
+import mainmenu.HostGUI;
+import sun.net.www.content.text.Generic;
+
+import javax.swing.*;
 
 public class Server {
 	int port;
@@ -20,19 +25,32 @@ public class Server {
 	ObjectOutputStream outStream;
 	ObjectInputStream inStream;
 	String inputLine;
+	HostGUI gui;
+	View view;
 	
-    public Server() throws Exception {
-    	// create socket
+    public Server(JFrame menu) throws IOException {
+        // gui = new HostGUI(this);
+        menu.add( new HostGUI(this));
+        menu.setVisible(true);
+
+        // create socket
         port = 2222;
         serverSocket = new ServerSocket(port);
         System.err.println("Started server on port " + port);
-        
+
+
+
         clientSocket = serverSocket.accept();
         System.err.println("Accepted connection from client");
 
         // open up IO streams
     	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
     	inStream = new ObjectInputStream(clientSocket.getInputStream());
+
+
+//        view = new View("Server");
+        view = new View(this);
+        menu.add(view);
     	
         // repeatedly wait for connections, and process
         /*
@@ -56,8 +74,18 @@ public class Server {
             }
         }
         */
+
     }
-    
+
+    public int getPort() {
+        return port;
+    }
+
+    public String getIP() {
+        //https://stackoverflow.com/questions/9481865/getting-the-ip-address-of-the-current-machine-using-java/9482369
+        return  serverSocket.getInetAddress().toString();
+    }
+
     public void send(Move move) throws Exception {
     	outStream.writeObject(move);
     }

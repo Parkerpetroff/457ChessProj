@@ -43,6 +43,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 	/** Panel for Host */
 	private HostGUI host;
+	Server s;
 
 	/** Panel for Join */
 	private JoinGUI join;
@@ -109,8 +110,15 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 		if (e.getSource() == hostButton) {
 			this.remove(screen);
-			host = new HostGUI();
-			add(host);
+
+
+			try {
+				s = new Server(this);
+			} catch (IOException error) {
+				System.out.println("Error in server creation");
+			}
+//			host = new HostGUI();
+//			add(host);
 
 			//new chess.ChessGUI(name1, name2);
 			revalidate();

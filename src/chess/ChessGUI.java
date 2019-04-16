@@ -57,7 +57,7 @@ public class ChessGUI extends JFrame implements ActionListener {
 		n1 = name1;
 		n2 = name2;
         setTitle("Chess");
-		add(new View(quitGame, newGame, name1, name2));
+//		add(new View(quitGame, newGame, name1, name2));
 	    pack();
 		setSize(800, 800);
 		setVisible(true);
