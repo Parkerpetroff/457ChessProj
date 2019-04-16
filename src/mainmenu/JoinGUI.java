@@ -41,10 +41,12 @@ public class JoinGUI extends JPanel implements ActionListener {
     /** Constraints for GridBag formating. */
     private GridBagConstraints con;
 
+    JFrame menu;
     /**
      * Creates the help panel with buttons.
      */
-    public JoinGUI() {
+    public JoinGUI(JFrame menu) {
+        this.menu = menu;
         setLayout(new GridBagLayout());
         setLayout(new GridBagLayout());
         con = new GridBagConstraints();
@@ -118,7 +120,7 @@ public class JoinGUI extends JPanel implements ActionListener {
                 IP = ipField.getText();
                 PortNum = Integer.parseInt(portField.getText());
                 String[] args = {IP,portField.getText()};
-                Client c = new Client(IP, PortNum);
+                Client c = new Client(IP, PortNum, menu);
                 System.out.println("CONNECT" + " " + IP + " " + PortNum);
             } catch (Exception error) {
                 System.out.println("Error with input");

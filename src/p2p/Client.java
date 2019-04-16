@@ -11,6 +11,9 @@ import java.io.*;
 import java.net.*;
 
 import chess.Move;
+import chess.View;
+
+import javax.swing.*;
 
 public class Client {
 	int port;
@@ -20,11 +23,14 @@ public class Client {
 	ObjectOutputStream outStream;
 	ObjectInputStream inStream;
 	String inputLine;
+	View view;
 	
-    public Client(String hostName, int portNumber) throws Exception {
+    public Client(String hostName, int portNumber, JFrame menu) throws Exception {
     	echoSocket = new Socket(hostName, portNumber);
     	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
     	inStream = new ObjectInputStream(echoSocket.getInputStream());
+        view = new View(this);
+        menu.add(view);
     	/*
     	try (
             Socket echoSocket = new Socket(hostName, portNumber);

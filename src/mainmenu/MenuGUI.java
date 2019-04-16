@@ -127,7 +127,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource() == joinButton) {
 			this.remove(screen);
-			join = new JoinGUI();
+			join = new JoinGUI(this);
 			add(join);
 			revalidate();
 			repaint();

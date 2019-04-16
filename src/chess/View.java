@@ -235,8 +235,8 @@ public class View extends JPanel {
 		}
 
 		//add listeners to menu items
-		quitGame.addActionListener(listener);
-		newGame.addActionListener(listener);
+//		quitGame.addActionListener(listener);
+//		newGame.addActionListener(listener);
 	}
 
 	/**
@@ -271,12 +271,22 @@ public class View extends JPanel {
 								move = new Move();
 							} else if (model.isValidMove(move)) {
 								model.move(move);
-								// TODO sock.send(move);
-								move = new Move();
 								System.out.println("Valid " + move);
+								try {
+									server.send(move);
+								} catch (Exception e) {
+									System.out.print("Could not Send Move");
+								}
+								move = new Move();
 								if (model.isWinner()) {
 									// break;
-								} // TODO else {model.move(sock.receive(move));}
+								} else {
+									try {
+										model.move(server.receive());
+									} catch (Exception e) {
+										System.out.print("Could Not Receive Move");
+									}
+								}
 
 							} else {
 								JOptionPane.showMessageDialog(null,

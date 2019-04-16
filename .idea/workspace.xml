@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f7aa29d-168d-4647-82db-503c0e9f052a" name="Default" comment="" />
+    <list default="true" id="4f7aa29d-168d-4647-82db-503c0e9f052a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/chess/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainmenu/JoinGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainmenu/JoinGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/p2p/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/p2p/Client.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MenuGUI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MenuGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="114" column="17" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
+            <state relative-caret-position="474">
+              <caret line="129" column="37" lean-forward="true" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2989#2990#0" expanded="true" />
@@ -29,8 +34,8 @@
       <file leaf-file-name="JoinGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainmenu/JoinGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="114" column="54" lean-forward="true" selection-start-line="114" selection-start-column="54" selection-end-line="114" selection-end-column="54" />
+            <state relative-caret-position="198">
+              <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#addLabels#0;class#JoinGUI#0" />
@@ -40,20 +45,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chess/Model.java">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/p2p/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+            <state relative-caret-position="391">
+              <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/p2p/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+            <state relative-caret-position="306">
+              <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chess/View.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2582">
+              <caret line="276" column="55" lean-forward="true" selection-start-line="276" selection-start-column="55" selection-end-line="276" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#loadIcons#0;class#View#0" />
+                <element signature="docComment;method#updateBoard#0;class#View#0" />
+                <element signature="method#updateBoard#0;class#View#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,15 +109,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/mainmenu/HelpPanel.java" />
-        <option value="$PROJECT_DIR$/src/p2p/Client.java" />
         <option value="$PROJECT_DIR$/src/chess/Move.java" />
-        <option value="$PROJECT_DIR$/src/mainmenu/JoinGUI.java" />
-        <option value="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" />
         <option value="$PROJECT_DIR$/src/mainmenu/HostGUI.java" />
         <option value="$PROJECT_DIR$/src/chess/Model.java" />
         <option value="$PROJECT_DIR$/src/p2p/Server.java" />
-        <option value="$PROJECT_DIR$/src/chess/View.java" />
         <option value="$PROJECT_DIR$/src/chess/ChessGUI.java" />
+        <option value="$PROJECT_DIR$/src/chess/View.java" />
+        <option value="$PROJECT_DIR$/src/p2p/Client.java" />
+        <option value="$PROJECT_DIR$/src/mainmenu/JoinGUI.java" />
+        <option value="$PROJECT_DIR$/src/mainmenu/MenuGUI.java" />
       </list>
     </option>
   </component>
@@ -123,12 +149,6 @@
               <item name="457ChessProj" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="chess" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="457ChessProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="457ChessProj" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mainmenu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="457ChessProj" type="b2602c69:ProjectViewProjectNode" />
@@ -254,13 +274,13 @@
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.1827027" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.1827027" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="CheckStyle" order="11" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.20157658" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.20157658" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="3" />
@@ -388,56 +408,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="114" column="17" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2989#2990#0" expanded="true" />
-            <element signature="e#3032#3033#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainmenu/HostGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="49" column="47" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/p2p/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2394#2395#0" expanded="true" />
-            <element signature="e#2421#2422#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="172" selection-start-line="172" selection-end-line="172" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#loadIcons#0;class#View#0" />
-            <element signature="docComment;method#updateBoard#0;class#View#0" />
-            <element signature="method#updateBoard#0;class#View#0" />
           </folding>
         </state>
       </provider>
@@ -449,10 +425,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2582">
+          <caret line="276" column="55" lean-forward="true" selection-start-line="276" selection-start-column="55" selection-end-line="276" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#loadIcons#0;class#View#0" />
+            <element signature="docComment;method#updateBoard#0;class#View#0" />
+            <element signature="method#updateBoard#0;class#View#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="50" column="45" lean-forward="true" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/p2p/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/p2p/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainmenu/JoinGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="114" column="54" lean-forward="true" selection-start-line="114" selection-start-column="54" selection-end-line="114" selection-end-column="54" />
+        <state relative-caret-position="198">
+          <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#addLabels#0;class#JoinGUI#0" />
@@ -461,10 +477,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/p2p/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/mainmenu/MenuGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        <state relative-caret-position="474">
+          <caret line="129" column="37" lean-forward="true" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2989#2990#0" expanded="true" />
+            <element signature="e#3032#3033#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
