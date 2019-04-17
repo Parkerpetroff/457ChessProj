@@ -2,72 +2,47 @@ package p2p;
 
 /**********************************************************************
  * Filename: Server
-
  *
  * Authors: Alec Betancourt, Parker Petroff, and Randy Nguyen
  **********************************************************************/
 
 import java.io.*;
 import java.net.*;
+
 import chess.Move;
 
-public class Server implements Runnable{
-	int port;
-	ServerSocket serverSocket;
-	Socket clientSocket;
-	PrintWriter out;
-	BufferedReader in;
-	ObjectOutputStream outStream;
-	ObjectInputStream inStream;
-	String inputLine;
-	Thread server;
-   public void createServer() throws Exception {
+public class Server implements Runnable {
+    int port;
+    ServerSocket serverSocket;
+    Socket clientSocket;
+    PrintWriter out;
+    BufferedReader in;
+    ObjectOutputStream outStream;
+    ObjectInputStream inStream;
+    Thread server;
 
-    	// create socket
+    public void createServer() throws Exception {
+
+        // create socket
         port = 2222;
         serverSocket = new ServerSocket(port);
         System.err.println("Started server on port " + port);
-        
+
         clientSocket = serverSocket.accept();
         System.err.println("Accepted connection from client");
-       new chess.ChessGUI("Player 1", "Player 2", true, clientSocket);
+        new chess.ChessGUI("Player 1", "Player 2", true, clientSocket);
 
-        // open up IO streams
-    //	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
-    //	inStream = new ObjectInputStream(clientSocket.getInputStream());
-    	
-        // repeatedly wait for connections, and process
-        /*
-        while (true) {
-            // a "blocking" call which waits until a connection is requested
-            clientSocket = serverSocket.accept();
-            System.err.println("Accepted connection from client");
-
-            // open up IO streams
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-        	in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        	
-        	outStream = new ObjectOutputStream(clientSocket.getOutputStream());
-        	inStream = new ObjectInputStream(clientSocket.getInputStream());
-        	
-            // waits for data and reads it in until connection dies
-            // readLine() blocks until the server receives a new line from client
-            while ((inputLine = in.readLine()) != null) {
-            	System.out.println("Received message: " + inputLine + " from " + clientSocket.toString());
-        	    out.println(inputLine);
-            }
-        }
-        */
     }
+
     @Override
-    public void run(){
-       try {
-           createServer();
-       }
-       catch (Exception ex){
-           System.out.println(ex.getMessage());
-       }
+    public void run() {
+        try {
+            createServer();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+
     public void start() {
         System.out.println("Thread started");
         if (server == null) {
@@ -75,22 +50,22 @@ public class Server implements Runnable{
             server.start();
         }
     }
-    
+
     public void send(Move move) throws Exception {
-    	outStream.writeObject(move);
+        outStream.writeObject(move);
     }
-    
+
     public Move receive() throws Exception {
-    	return (Move) inStream.readObject();
+        return (Move) inStream.readObject();
     }
-    
+
     public void close() throws Exception {
-    	// close IO streams, then socket
+        // close IO streams, then socket
         System.err.println("Closing connection with client");
         out.close();
         in.close();
         clientSocket.close();
         serverSocket.close();
     }
-    
+
 }

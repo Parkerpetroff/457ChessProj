@@ -5,7 +5,6 @@ import p2p.Client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.Socket;
 
 import javax.swing.*;
 
@@ -61,11 +60,11 @@ public class JoinGUI extends JPanel implements ActionListener {
 
         messageLabel = new JLabel("Enter Host's information");
         ipLabel = new JLabel("IP:");
-        portLabel = new JLabel("Port Number:");
+        portLabel = new JLabel("Port #:");
 
         messageLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        ipLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        portLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        ipLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        portLabel.setFont(new Font("Arial", Font.BOLD, 30));
 
         con.gridx = 0;
         con.gridy = 0;
@@ -103,7 +102,7 @@ public class JoinGUI extends JPanel implements ActionListener {
 
     private void addButton() {
         connectButton = new JButton("Connect");
-        connectButton.setFont(new Font("Arial", Font.BOLD, 15));
+        connectButton.setFont(new Font("Arial", Font.BOLD, 30));
         con.gridx = 1;
         con.gridy = 3;
         con.gridwidth = 2;
@@ -118,8 +117,6 @@ public class JoinGUI extends JPanel implements ActionListener {
             try {
                 IP = ipField.getText();
                 PortNum = Integer.parseInt(portField.getText());
-                String[] args = {"CONNECT",IP,portField.getText()};
-                //Client.main(args);
                 new Client(IP,PortNum);
                 System.out.println("CONNECT" + " " + IP + " " + PortNum);
 

@@ -38,8 +38,6 @@ public class ChessGUI extends JFrame implements ActionListener {
         JMenuItem quitGame;
         JMenuItem newGame;
 
-
-      //  JFrame frame = new JFrame("Chess");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // Creates and adds menu options to file menu which is then added to menu bar
@@ -57,16 +55,19 @@ public class ChessGUI extends JFrame implements ActionListener {
         menus.add(fileMenu);
 		n1 = name1;
 		n2 = name2;
-        setTitle("Chess");
-        add(new View(quitGame, newGame, name1, name2, isHost, commsSock));
 
+		if (isHost)
+            setTitle("Chess Host (White)");
+		else
+		    setTitle("Chess Client (Black)");
+
+        add(new View(quitGame, newGame, name1, name2, isHost, commsSock));
 
 	    pack();
 		setSize(800, 800);
 		setVisible(true);
 	}
 
-	
 	@Override
 	public void actionPerformed(final ActionEvent arg0) {
 		// TODO Auto-generated method stub

@@ -1,16 +1,9 @@
 package mainmenu;
 
-import p2p.Server;
-
 import java.awt.*;
-import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.Socket;
-import java.util.Enumeration;
-import java.util.Vector;
 
 /**
  * Panel displayed as the host screen.
@@ -62,11 +55,6 @@ public class HostGUI extends JPanel{
         messageLabel = new JLabel("Give this to your friend!");
         ipLabel = new JLabel("IP Address: " + MyIP);
         portLabel = new JLabel("Port #: 2222");
-        try {
-
-        }catch(Exception e){
-
-        }
 
         messageLabel.setFont(new Font("Arial", Font.BOLD, 30));
         ipLabel.setFont(new Font("Arial", Font.BOLD, 30));
@@ -87,12 +75,5 @@ public class HostGUI extends JPanel{
         con.gridwidth = 2;
         add(portLabel, con);
         con.fill = GridBagConstraints.HORIZONTAL;
-
-//        try {
-//            String[] args = {"9000"};
-//            Server.main(args);
-//        } catch (IOException error) {
-//            System.out.print("Server Creation Error");
-//        }
     }
 }
