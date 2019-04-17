@@ -1,28 +1,19 @@
 package chess;
 
-import java.awt.Color;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 /**
  * JPanel for the chess game.
  * @author Parker
  *
  */
-public class View extends JPanel {
+public class View extends JPanel implements Runnable {
 	/**
 	 * View ID.
 	 */
@@ -43,16 +34,16 @@ public class View extends JPanel {
 	 * Menu item to create new game.
 	 */
 	private JMenuItem newGame;
-    /**
-     * Menu item to quit game.
-     */
+	/**
+	 * Menu item to quit game.
+	 */
 	private JMenuItem quitGame;
 	/**
 	 * All of the chess piece icons.
 	 */
-	private ImageIcon pawnIconW, pawnIconB, rookIconW, 
-	rookIconB, knightIconW, knightIconB, bishopIconW, bishopIconB,
-	queenIconW, queenIconB, kingIconW, kingIconB;
+	private ImageIcon pawnIconW, pawnIconB, rookIconW,
+			rookIconB, knightIconW, knightIconB, bishopIconW, bishopIconB,
+			queenIconW, queenIconB, kingIconW, kingIconB;
 	/**
 	 * Brown used for background tiles.
 	 */
@@ -66,14 +57,16 @@ public class View extends JPanel {
 	 */
 	private String name1, name2;
 	private boolean isTurn;
+
 	private Socket comms;
 	private ObjectOutputStream outStream;
 	private ObjectInputStream inStream;
+	private waitForTurn w;
+	private Thread t;
 	//will likely be deleted in favor of master UI in release 2
 	//add new game/quit function in menu options
 	/**
 	 * Creates the JFrame and chess panel.
-	 * @param args for main
 	 */
 	/* Commented out for now because I dont think we'll need it */
 //	public static void main(final String[] args) {
@@ -101,23 +94,26 @@ public class View extends JPanel {
 //		frame.setSize(800, 800);
 //		frame.setVisible(true);
 //	}
-	
+	@Override
+	public void run(){
+
+	}
 	/**
 	 * Creates the board and all pieces/icons.
-	 * 
+	 *
 	 * @param pquitGame quit game menu item.
 	 * @param pnewGame new game menu item
 	 * @param pName1 player 1's name.
 	 * @param pName2 player 2's name.
 	 */
-	public View(final JMenuItem pquitGame, final JMenuItem pnewGame, final String pName1, final String pName2, final Socket commsSock) {
+	public View(final JMenuItem pquitGame, final JMenuItem pnewGame, final String pName1, final String pName2, boolean isHost, final Socket comms) {
 		name1 = pName1;
 		name2 = pName2;
 		model = new Model(name1, name2);
 		board = new JButton[8][8];
 		move = new Move();
 		newGame = pnewGame;
-        quitGame = pquitGame;
+		quitGame = pquitGame;
 		pawnIconW = new ImageIcon("src/chess/pawnIconW.png");
 		pawnIconB = new ImageIcon("src/chess/pawnIconB.png");
 		rookIconW = new ImageIcon("src/chess/rookIconW.png");
@@ -131,26 +127,26 @@ public class View extends JPanel {
 		kingIconW = new ImageIcon("src/chess/kingIconW.png");
 		kingIconB = new ImageIcon("src/chess/kingIconB.png");
 		//host will go first
-		isTurn = true;
+		isTurn = isHost;
 		setLayout(new GridLayout(8, 8));
 		ButtonListener listener = new ButtonListener();
 		for (int row = 0; row < 8; row++) {
 			for (int col = 0; col < 8; col++) {
 				board[row][col] = new JButton();
 				if ((row + col) % 2 == 0) {
-	                board[row][col].setBackground(BROWN);
-	            } else {
-	                board[row][col].setBackground(TAN);
-	            }
+					board[row][col].setBackground(BROWN);
+				} else {
+					board[row][col].setBackground(TAN);
+				}
 				board[row][col].addActionListener(listener);
 				add(board[row][col]);
 			}
 		}
-		
+
 		//add listeners to menu items
 		quitGame.addActionListener(listener);
-        newGame.addActionListener(listener);
-		comms = commsSock;
+		newGame.addActionListener(listener);
+		this.comms = comms;
 		try {
 			outStream = new ObjectOutputStream(comms.getOutputStream());
 			inStream = new ObjectInputStream(comms.getInputStream());
@@ -158,36 +154,77 @@ public class View extends JPanel {
 			System.out.println(ex.getMessage());
 		}
 		updateBoard();
-	}
-
-	public void waitForTurn(){
 		try {
-			while(inStream.available() != 0) {
+			w = new waitForTurn();
+			w.start();
+		}catch (Exception ex){
 
-			}
-			Move oMove = (Move)inStream.readObject();
-			if (oMove == null) {
-				System.out.println("You are not god (not feat god)" + oMove.toString());
-			} else {
-				System.out.println("You are god (feat god)" + oMove.toString());
-				model.move(oMove);
-				System.out.println("Valid " + oMove);
-				if (model.isWinner()) {
-					model.wipeBoard();
-					JOptionPane.showMessageDialog(null,
-							model.currentPlayer().name()
-									+ " has won!");
-				}
-				updateBoard();
-				model.nextTurn();
-				isTurn = true;
-
-
-			}
-		}catch(Exception ex){
-			System.out.println(ex.getMessage() +"You not are god (not feat god) you are a faggot" + move.toString());
 		}
 	}
+
+	private class waitForTurn implements Runnable{
+		public void waitTurn() {
+			try {
+				while (inStream.available() != 0) {
+
+				}
+//			do {
+//				try {
+				Move oMove = (Move) inStream.readObject();
+//					if(oMove != null) {
+//						wait = false;
+//					}
+//				}catch (Exception ex) {
+//					wait = true;
+//				}
+//			}while(wait);
+
+
+				if (oMove == null) {
+					System.out.println(oMove.toString());
+				} else {
+					System.out.println(oMove.toString());
+					model.move(oMove);
+					System.out.println("Valid " + oMove);
+					if (model.isWinner()) {
+						model.wipeBoard();
+						JOptionPane.showMessageDialog(null,
+								model.currentPlayer().name()
+										+ " has won!");
+					}
+					updateBoard();
+					model.nextTurn();
+					isTurn = true;
+				}
+			} catch (Exception ex) {
+				System.out.println(ex.getMessage());
+			}
+
+		}
+
+
+		@Override
+		public void run(){
+			try {
+				waitTurn();
+			}
+			catch (Exception ex){
+				System.out.println(ex.getMessage());
+			}
+		}
+		public void start() {
+			//if(t == null) {
+			t = new Thread(this);
+			t.start();
+//			} else{
+//
+//			}
+
+		}
+	}
+
+
+
 	/**
 	 * Listener for board buttons.
 	 * @author Alec
@@ -199,10 +236,11 @@ public class View extends JPanel {
 		 * @param event what was pressed.
 		 */
 		public void actionPerformed(final ActionEvent event) {
+			boolean success = false;
 			Object source = event.getSource();
 			if(isTurn) {
-			for (int row = 0; row < 8; row++) {
-				for (int col = 0; col < 8; col++) {
+				for (int row = 0; row < 8; row++) {
+					for (int col = 0; col < 8; col++) {
 
 						if (board[row][col] == source) {
 							if (move.fromRow == -1 && model.pieceAt(row, col) != null
@@ -223,10 +261,12 @@ public class View extends JPanel {
 								} else if (model.isValidMove(move)) {
 									model.move(move);
 									try {
+										outStream.reset();
 										outStream.writeObject(move);
 									}catch(Exception ex){
 										System.out.println(ex.getMessage());
 									}
+									success = true;
 									move = new Move();
 									System.out.println("Valid " + move);
 									if (model.isWinner()) {
@@ -237,6 +277,7 @@ public class View extends JPanel {
 									}
 									model.nextTurn();
 									isTurn = false;
+
 								} else {
 									JOptionPane.showMessageDialog(null,
 											"This is not a valid move");
@@ -254,20 +295,31 @@ public class View extends JPanel {
 
 			}
 			//reset model if new game option is selected
-            if (source == newGame) {
-            	//leave for now
-            	//model = new Model(name1, name2, isHost);
-            }
+			if (source == newGame) {
+				//leave for now
+				//model = new Model(name1, name2, isHost);
+			}
 
-            //quit game if menu option was selected
-            if (source == quitGame) {
-                //either exit to main menu or exit jvm completely
-            	System.exit(0);
-            }
+			//quit game if menu option was selected
+			if (source == quitGame) {
+				//either exit to main menu or exit jvm completely
+				System.exit(0);
+			}
 			updateBoard();
+			if(success){
+				try {
+					w = new waitForTurn();
+					w.start();
+
+				}catch (Exception ex){
+
+				}
+
+			}
+
 		}
 	}
-	
+
 	/**
 	 * Update the look of the board after a move.
 	 */
@@ -276,55 +328,55 @@ public class View extends JPanel {
 			for (int col = 0; col < 8; col++) {
 				if (model.pieceAt(row, col) != null && model.pieceAt(row, col).team() == "BLACK") {
 					switch (model.pieceAt(row, col).type()) {
-					case "Pawn":
-						board[row][col].setIcon(pawnIconB);
-						break;
-					case "Rook":
-						board[row][col].setIcon(rookIconB);
-						break;
-					case "Knight":
-						board[row][col].setIcon(knightIconB);
-						break;
-					case "Bishop":
-						board[row][col].setIcon(bishopIconB);
-						break;
-					case "Queen":
-						board[row][col].setIcon(queenIconB);
-						break;
-					case "King":
-						board[row][col].setIcon(kingIconB);
-						break;
-					default:
-						break;
+						case "Pawn":
+							board[row][col].setIcon(pawnIconB);
+							break;
+						case "Rook":
+							board[row][col].setIcon(rookIconB);
+							break;
+						case "Knight":
+							board[row][col].setIcon(knightIconB);
+							break;
+						case "Bishop":
+							board[row][col].setIcon(bishopIconB);
+							break;
+						case "Queen":
+							board[row][col].setIcon(queenIconB);
+							break;
+						case "King":
+							board[row][col].setIcon(kingIconB);
+							break;
+						default:
+							break;
 					}
-				} else if (model.pieceAt(row, col) != null 
+				} else if (model.pieceAt(row, col) != null
 						&& model.pieceAt(row, col).team() == "WHITE") {
 					switch (model.pieceAt(row, col).type()) {
-					case "Pawn":
-						board[row][col].setIcon(pawnIconW);
-						break;
-					case "Rook":
-						board[row][col].setIcon(rookIconW);
-						break;
-					case "Knight":
-						board[row][col].setIcon(knightIconW);
-						break;
-					case "Bishop":
-						board[row][col].setIcon(bishopIconW);
-						break;
-					case "Queen":
-						board[row][col].setIcon(queenIconW);
-						break;
-					case "King":
-						board[row][col].setIcon(kingIconW);
-						break;
-					default:
-						break;
+						case "Pawn":
+							board[row][col].setIcon(pawnIconW);
+							break;
+						case "Rook":
+							board[row][col].setIcon(rookIconW);
+							break;
+						case "Knight":
+							board[row][col].setIcon(knightIconW);
+							break;
+						case "Bishop":
+							board[row][col].setIcon(bishopIconW);
+							break;
+						case "Queen":
+							board[row][col].setIcon(queenIconW);
+							break;
+						case "King":
+							board[row][col].setIcon(kingIconW);
+							break;
+						default:
+							break;
 					}
 				} else {
 					board[row][col].setIcon(null);
 				}
 			}
-		}		
+		}
 	}
 }
