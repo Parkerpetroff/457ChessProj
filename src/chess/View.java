@@ -126,10 +126,8 @@ public class View extends JPanel {
         loadIcons();
         setLayout(new GridLayout(8, 8));
         setButtonListeners();
-        if (this.client != null) {
+        if (this.client != null)
             model.move(this.client.receive());
-            model.nextTurn();
-        }
         updateBoard();
     }
 
@@ -172,7 +170,7 @@ public class View extends JPanel {
     /**
      * Listener for board buttons.
      *
-     * @author Alec
+     * @author Alec and Randy
      */
     private class ButtonListener implements ActionListener {
         /**
@@ -203,24 +201,21 @@ public class View extends JPanel {
                             }
                             else if (model.isValidMove(move)) {
                                 model.move(move);
-                                model.nextTurn();
                                 updateBoard();
                                 System.out.println("Valid " + move);
                                 if (server != null)
                                     server.send(move);
                                 else
                                     client.send(move);
+                                updateBoard();
                                 move = new Move();
                                 if (model.isWinner()) {
                                     break;
                                 } else {
-                                    if (server != null) {
+                                    if (server != null)
                                         model.move(server.receive());
-                                        model.nextTurn();
-                                    } else {
+                                    else
                                         model.move(client.receive());
-                                        model.nextTurn();
-                                    }
                                     updateBoard();
                                 }
 
@@ -244,9 +239,9 @@ public class View extends JPanel {
             }
 
             //reset model if new game option is selected
-//            if (source == newGame) {
-//                model = new Model("White");
-//            }
+            if (source == newGame) {
+                model = new Model("White");
+            }
 
             //quit game if menu option was selected
             if (source == quitGame) {

@@ -33,7 +33,10 @@ public class Model {
 		
 		player1 = new Player("WHITE", Team.WHITE);
 		player2 = new Player("BLACK", Team.BLACK);
-		currentPlayer = player1;
+		if (name.equals("WHITE"))
+			currentPlayer = player1;
+		else
+			currentPlayer = player2;
 		
 		board[0][0] = new Rook(Team.BLACK);
 		board[0][1] = new Knight(Team.BLACK);
