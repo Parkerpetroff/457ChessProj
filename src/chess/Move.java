@@ -1,11 +1,13 @@
 package chess;
 
+import java.io.Serializable;
+
 /**
  * Class for keeping track of where the chess piece moves.
  * @author Alec
  *
  */
-public class Move {
+public class Move implements Serializable {
 	/**
 	 * Move data for rows and columns.
 	 */

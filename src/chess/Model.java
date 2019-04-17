@@ -23,6 +23,10 @@ public class Model {
 	 * The current player, who's turn it is.
 	 */
 	private Player currentPlayer;
+
+	private boolean isHost;
+
+	private String n1,n2;
 	
 	/**
 	 * Model constructor. Creates the pieces and board.
@@ -31,11 +35,12 @@ public class Model {
 	 */
 	public Model(final String name1, final String name2) {
 		board = new Piece[8][8];
-		
+
 		player1 = new Player(name1, Team.WHITE);
 		player2 = new Player(name2, Team.BLACK);
 		currentPlayer = player1;
-		
+		n1 = name1;
+		n2 = name2;
 		board[0][0] = new Rook(Team.BLACK);
 		board[0][1] = new Knight(Team.BLACK);
 		board[0][2] = new Bishop(Team.BLACK);
@@ -93,8 +98,10 @@ public class Model {
 	 * @param move the move the piece will make
 	 */
 	public void move(final Move move) {
-		board[move.toRow][move.toColumn] = board[move.fromRow][move.fromColumn];
-		board[move.fromRow][move.fromColumn] = null;
+
+			board[move.toRow][move.toColumn] = board[move.fromRow][move.fromColumn];
+			board[move.fromRow][move.fromColumn] = null;
+
 	}
 
 	/**

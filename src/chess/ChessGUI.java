@@ -2,6 +2,7 @@ package chess;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Socket;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -31,7 +32,7 @@ public class ChessGUI extends JFrame implements ActionListener {
 	 * @param name1 player 1's name.
 	 * @param name2 player 2's name.
 	 */
-	public ChessGUI(final String name1, final String name2) {
+	public ChessGUI(final String name1, final String name2, final boolean isHost, final Socket commsSock ) {
 		JMenuBar menus;
         JMenu fileMenu;
         JMenuItem quitGame;
@@ -57,7 +58,9 @@ public class ChessGUI extends JFrame implements ActionListener {
 		n1 = name1;
 		n2 = name2;
         setTitle("Chess");
-		add(new View(quitGame, newGame, name1, name2));
+        add(new View(quitGame, newGame, name1, name2, isHost, commsSock));
+
+
 	    pack();
 		setSize(800, 800);
 		setVisible(true);

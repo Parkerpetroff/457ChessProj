@@ -23,9 +23,9 @@ public class Client {
 	
     public Client(String hostName, int portNumber) throws Exception {
     	echoSocket = new Socket(hostName, portNumber);
-    	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
-    	inStream = new ObjectInputStream(echoSocket.getInputStream());
-        new chess.ChessGUI("Player 1", "Player 2");
+//    	outStream = new ObjectOutputStream(echoSocket.getOutputStream());
+//    	inStream = new ObjectInputStream(echoSocket.getInputStream());
+        new chess.ChessGUI("Player 1", "Player 2",false,echoSocket);
     	/*
     	try (
             Socket echoSocket = new Socket(hostName, portNumber);
