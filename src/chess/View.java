@@ -159,7 +159,35 @@ public class View extends JPanel {
 		}
 		updateBoard();
 	}
-	
+
+	public void waitForTurn(){
+		try {
+			while(inStream.available() != 0) {
+
+			}
+			Move oMove = (Move)inStream.readObject();
+			if (oMove == null) {
+				System.out.println("You are not god (not feat god)" + oMove.toString());
+			} else {
+				System.out.println("You are god (feat god)" + oMove.toString());
+				model.move(oMove);
+				System.out.println("Valid " + oMove);
+				if (model.isWinner()) {
+					model.wipeBoard();
+					JOptionPane.showMessageDialog(null,
+							model.currentPlayer().name()
+									+ " has won!");
+				}
+				updateBoard();
+				model.nextTurn();
+				isTurn = true;
+
+
+			}
+		}catch(Exception ex){
+			System.out.println(ex.getMessage() +"You not are god (not feat god) you are a faggot" + move.toString());
+		}
+	}
 	/**
 	 * Listener for board buttons.
 	 * @author Alec
@@ -194,6 +222,11 @@ public class View extends JPanel {
 									move = new Move();
 								} else if (model.isValidMove(move)) {
 									model.move(move);
+									try {
+										outStream.writeObject(move);
+									}catch(Exception ex){
+										System.out.println(ex.getMessage());
+									}
 									move = new Move();
 									System.out.println("Valid " + move);
 									if (model.isWinner()) {
@@ -225,7 +258,7 @@ public class View extends JPanel {
             	//leave for now
             	//model = new Model(name1, name2, isHost);
             }
-            
+
             //quit game if menu option was selected
             if (source == quitGame) {
                 //either exit to main menu or exit jvm completely

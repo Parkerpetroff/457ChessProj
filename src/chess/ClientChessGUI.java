@@ -55,7 +55,7 @@ public class ClientChessGUI extends JFrame implements ActionListener {
 		n2 = name2;
         setTitle("Chess");
 
-        add(new ClientView(quitGame, newGame, name1, name2));
+        add(new ClientView(quitGame, newGame, name1, name2, isHost, echoSocket));
 
 	    pack();
 		setSize(800, 800);

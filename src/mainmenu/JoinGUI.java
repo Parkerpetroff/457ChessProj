@@ -122,6 +122,7 @@ public class JoinGUI extends JPanel implements ActionListener {
                 //Client.main(args);
                 new Client(IP,PortNum);
                 System.out.println("CONNECT" + " " + IP + " " + PortNum);
+
             } catch (Exception error) {
                 System.out.println("Error with input");
             }
